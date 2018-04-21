@@ -1,0 +1,23 @@
+[*]
+end_of_line = crlf : warning
+
+[*.cs]
+indent_style = tab : warning
+dotnet_style_qualification_for_field = true : warning
+dotnet_style_qualification_for_property = true : warning
+dotnet_style_qualification_for_method = true : warning
+dotnet_style_qualification_for_event = true : warning
+
+csharp_style_expression_bodied_methods = when_on_single_line : error
+csharp_style_expression_bodied_constructors = when_on_single_line : error
+csharp_style_expression_bodied_operators = when_on_single_line : error
+csharp_style_expression_bodied_properties = when_on_single_line : error
+csharp_style_expression_bodied_indexers = when_on_single_line : error
+csharp_style_expression_bodied_accessors = when_on_single_line : error
+
+csharp_new_line_before_catch = false
+csharp_new_line_before_else = false
+csharp_new_line_before_finally = false
+csharp_new_line_before_open_brace = none
+
+csharp_preserve_single_line_statements = false
