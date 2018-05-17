@@ -15,6 +15,33 @@ namespace Oire.Notika.Dialogs {
 
 		public DatabaseNotFound() {
 			InitializeComponent();
+            		}
+
+				private void browse_Click(object sender, EventArgs e) {
+			using (OpenFileDialog ofd = new OpenFileDialog()) {
+				ofd.InitialDirectory = Config.CONFIG_DIR;
+				ofd.AddExtension = true;
+				ofd.DefaultExt = "ndb";
+                ofd.CheckFileExists = false;
+				ofd.Filter = _("Notika database files (*.ndb)|*.ndb|All files (*.*)|*.*");
+				ofd.Multiselect = false;
+				ofd.RestoreDirectory = true;
+				ofd.Title = _("Select Database File");
+				if (ofd.ShowDialog() == DialogResult.OK) {
+					this.fileName.Text = ofd.FileName;
+                    this.fileName.Focus();
+				}
+			}
+		}
+
+		private void ok_Click(object sender, EventArgs e) {
+			this.DialogResult = DialogResult.OK;
+		}
+
+		private void cancel_Click(object sender, EventArgs e) {
+			this.DialogResult = DialogResult.Cancel;
+			logger.Info("Database search canceled. Closing window.");
+			this.Close();
 		}
 	}
 }

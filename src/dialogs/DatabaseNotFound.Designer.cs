@@ -86,6 +86,7 @@ namespace Oire.Notika.Dialogs {
 			this.browse.Dock = DockStyle.Fill;
 			this.browse.TabStop = true;
 			this.browse.Text = _("&Browse...");
+			this.browse.Click += new System.EventHandler(this.browse_Click);
 			//
 			// ok
 			//
@@ -93,6 +94,7 @@ namespace Oire.Notika.Dialogs {
 			this.ok.Dock = DockStyle.Fill;
 			this.ok.TabStop = true;
 			this.ok.Text = _("&OK");
+			this.ok.Click += new System.EventHandler(this.ok_Click);
 			//
 			// Cancel
 			//
@@ -100,6 +102,7 @@ namespace Oire.Notika.Dialogs {
 			this.cancel.Dock = DockStyle.Fill;
 			this.cancel.TabStop = true;
 			this.cancel.Text = _("&Cancel");
+			this.cancel.Click += new System.EventHandler(this.cancel_Click);
 			// 
 			// DatabaseNotFound
 			//

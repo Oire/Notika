@@ -10,5 +10,5 @@ The application is in heavy development now, this file will be expanded as new f
 
 
 ## License
-Copyright © 2018 Natalia & Andre Polykanine also known as Nostië & Menelion Elensúlë, The Magical Kingdom of Oirë
+Copyright © 2018 Natalia & Andre Polykanine also known as Nostië & Menelion Elensúlë, The Magical Kingdom of Oirë  
 This software is licensed under an MIT license.

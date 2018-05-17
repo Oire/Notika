@@ -7,7 +7,8 @@ namespace Oire.Notika {
 
 	public static class Config {
 		private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-		private static readonly string CONFIG_PATH = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"Oire\Notika\notika.cfg");
+		public static readonly string CONFIG_DIR = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"Oire\Notika");
+		private static readonly string CONFIG_PATH = Path.Combine(CONFIG_DIR, "notika.cfg");
 		private static Configuration config;
 		public static Config.General general;
 		public static Config.Database database;
@@ -18,7 +19,7 @@ namespace Oire.Notika {
 		}
 
 		public class Database {
-			public string location { get; set; } = String.Format(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"Oire\Notika\{0}.ndb"), Environment.UserName);
+			public string location { get; set; } = String.Format(Path.Combine(CONFIG_DIR, "{0}.ndb"), Environment.UserName);
 			public bool usePassword { get; set; } = false;
 			public string userName { get; set; } = Environment.UserName;
 			public string password { get; set; } = "";
@@ -38,18 +39,17 @@ namespace Oire.Notika {
 				config.Add(Section.FromObject("general", general));
 				config.Add(Section.FromObject("database", database));
 				try {
-					string configDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"Oire\Notika");
-					if (!Directory.Exists(configDir)) {
+					if (!Directory.Exists(CONFIG_DIR)) {
 						logger.Info("Configuration directory does not exist, creating new folder.");
-						Directory.CreateDirectory(configDir);
+						Directory.CreateDirectory(CONFIG_DIR);
 					}
 					config.SaveToFile(CONFIG_PATH);
 				} catch (Exception e) {
-					logger.Error(String.Format("Unable to save configuration to {0}: {1}", CONFIG_PATH, e.Message));
+					logger.Error("Unable to save configuration to {0}: {1}", CONFIG_PATH, e.Message);
 					DialogResult msg = MessageBox.Show("Unable to save configuration. Please contact the developer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				}
 			} catch (Exception e) {
-				logger.Error(String.Format("Unable to load configuration from {0}: {1}", CONFIG_PATH, e.Message));
+				logger.Error("Unable to load configuration from {0}: {1}", CONFIG_PATH, e.Message);
 				DialogResult msg = MessageBox.Show("Unable to load configuration. Please contact the developer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			}
 		}
@@ -59,7 +59,7 @@ namespace Oire.Notika {
 			try {
 				config.SaveToFile(CONFIG_PATH);
 			} catch(Exception e) {
-				logger.Error(String.Format("Unable to save configuration to {0}: {1}", CONFIG_PATH, e.Message));
+				logger.Error("Unable to save configuration to {0}: {1}", CONFIG_PATH, e.Message);
 				DialogResult msg = MessageBox.Show("Unable to save configuration. Please contact the developer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			}
 		}

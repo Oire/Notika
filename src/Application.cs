@@ -21,12 +21,16 @@ namespace Oire.Notika {
 			System.Windows.Forms.Application.EnableVisualStyles();
 			System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 			Config.Load();
-            			if (!File.Exists(Config.database.location)) {
-            				DatabaseNotFound dbnf = new Dialogs.DatabaseNotFound();
-				dbnf.ShowDialog();
-				// logger.Info("Database does not exist, creating file.");
-				// SQLiteConnection.CreateFile(Config.database.location);
-			}
+            if (!File.Exists(Config.database.location)) {
+                DatabaseNotFound dbnf = new Dialogs.DatabaseNotFound();
+                if (dbnf.ShowDialog() == DialogResult.OK)
+                    logger.Info("Database does not exist, creating file.");
+                try {
+                    SQLiteConnection.CreateFile(Config.database.location);
+                } catch (Exception e) {
+                    logger.Fatal("Unable to create database file at {0}", Config.database.location);
+                }
+            }
 			System.Windows.Forms.Application.Run(new MainForm());
 		}
 	}
