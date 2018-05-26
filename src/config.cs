@@ -45,11 +45,11 @@ namespace Oire.Notika {
 					}
 					config.SaveToFile(CONFIG_PATH);
 				} catch (Exception e) {
-					logger.Error("Unable to save configuration to {0}: {1}", CONFIG_PATH, e.Message);
+					logger.Fatal("Unable to save configuration to {0}: {1}", CONFIG_PATH, e.Message);
 					DialogResult msg = MessageBox.Show("Unable to save configuration. Please contact the developer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				}
 			} catch (Exception e) {
-				logger.Error("Unable to load configuration from {0}: {1}", CONFIG_PATH, e.Message);
+				logger.Fatal("Unable to load configuration from {0}: {1}", CONFIG_PATH, e.Message);
 				DialogResult msg = MessageBox.Show("Unable to load configuration. Please contact the developer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			}
 		}
@@ -59,7 +59,7 @@ namespace Oire.Notika {
 			try {
 				config.SaveToFile(CONFIG_PATH);
 			} catch(Exception e) {
-				logger.Error("Unable to save configuration to {0}: {1}", CONFIG_PATH, e.Message);
+				logger.Fatal("Unable to save configuration to {0}: {1}", CONFIG_PATH, e.Message);
 				DialogResult msg = MessageBox.Show("Unable to save configuration. Please contact the developer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			}
 		}
