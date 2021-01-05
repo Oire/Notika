@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Notika")]
 [assembly: AssemblyDescription("A lightweight and accessible yet powerful application for managing notes, tasks and to-do lists.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Oire")]
+[assembly: AssemblyCompany("The Magical Kingdom of Oirë")]
 [assembly: AssemblyProduct("Notika")]
-[assembly: AssemblyCopyright("Copyright ©  2018, Nostië & Menelion Elensúlë, The Magical Kingdom of Oirë")]
+[assembly: AssemblyCopyright("Copyright © 2018 — 2021, Natalia & Andre Polykanine also known as Nostië & Menelion Elensúlë, The Magical Kingdom of Oirë, https://github.com/Oire")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,4 +32,4 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.0.3.0")]
+[assembly: AssemblyVersion("0.0.4.0")]
