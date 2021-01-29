@@ -4,14 +4,15 @@ using System.Windows.Forms;
 using SharpConfig;
 
 namespace Oire.Notika {
-
-	public static class Config {
+    public static class Config {
 		private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 		public static readonly string CONFIG_DIR = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"Oire\Notika");
+		public static readonly string USER_NAME = Environment.UserName[0].ToString().ToUpper() + Environment.UserName.Substring(1);
 		private static readonly string CONFIG_PATH = Path.Combine(CONFIG_DIR, "notika.cfg");
-		private static Configuration config;
+		
 		public static Config.General general;
 		public static Config.Database database;
+		private static Configuration config;
 
 		#region Config Section Classes
 		public class General {
@@ -21,7 +22,7 @@ namespace Oire.Notika {
 		public class Database {
 			public string location { get; set; } = String.Format(Path.Combine(CONFIG_DIR, "{0}.ndb"), Environment.UserName);
 			public bool usePassword { get; set; } = false;
-			public string userName { get; set; } = Environment.UserName;
+			public string userName { get; set; } = USER_NAME;
 			public string password { get; set; } = "";
 		}
 		#endregion
@@ -29,15 +30,15 @@ namespace Oire.Notika {
 		public static void Load() {
 			try {
 				config = Configuration.LoadFromFile(CONFIG_PATH);
-				general = config["general"].ToObject<General>();
-				database = config["database"].ToObject<Database>();
+				general = config["General"].ToObject<General>();
+				database = config["Database"].ToObject<Database>();
 			} catch (FileNotFoundException) {
 				logger.Info("Config file not found, creating default configuration.");
 				config = new Configuration();
 				general = new Config.General();
 				database = new Config.Database();
-				config.Add(Section.FromObject("general", general));
-				config.Add(Section.FromObject("database", database));
+				config.Add(Section.FromObject("General", general));
+				config.Add(Section.FromObject("Database", database));
 				try {
 					if (!Directory.Exists(CONFIG_DIR)) {
 						logger.Info("Configuration directory does not exist, creating new folder.");
